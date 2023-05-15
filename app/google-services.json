@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "37768322219",
+    "firebase_url": "https://smartdoorbell-2382f-default-rtdb.firebaseio.com",
+    "project_id": "smartdoorbell-2382f",
+    "storage_bucket": "smartdoorbell-2382f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37768322219:android:d5c15b5e2eae6703902bee",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37768322219-pfs4otqqi7gk9as2nca02nn2nssm7lfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDW8ppV48ZHvdp0HcVIR_LTknJkbkN1oc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37768322219-pfs4otqqi7gk9as2nca02nn2nssm7lfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
