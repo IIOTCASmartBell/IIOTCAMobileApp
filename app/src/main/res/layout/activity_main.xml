@@ -6,4 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/greeting_text"
+        android:layout_width="485dp"
+        android:layout_height="327dp"
+        android:text="Name"
+        android:textColor="#5a79ba"
+        android:textSize="35sp"
+        android:typeface="serif"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/bottom_text"
+        android:layout_width="414dp"
+        android:layout_height="416dp"
+        android:text="You have no visitors yet"
+        android:textColor="#5a79ba"
+        android:textSize="15sp"
+        android:typeface="serif"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
