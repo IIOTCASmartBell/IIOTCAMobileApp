@@ -25,14 +25,14 @@ public class MainActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         int timeOfDay = calendar.get(Calendar.HOUR_OF_DAY);
 
-        if(timeOfDay >= 0 && timeOfDay < 12){
+        if(timeOfDay >= 4 && timeOfDay < 12){
             greetingTextView.setText("Good Morning!");
         }else if(timeOfDay >= 12 && timeOfDay < 18){
             greetingTextView.setText("Good Afternoon!");
             greetingTextView.setPadding(130,550,0,10);
-        }else if(timeOfDay >= 18 && timeOfDay < 21){
+        }else if(timeOfDay >= 18 && timeOfDay < 22){
             greetingTextView.setText("Good Evening!");
-        }else if(timeOfDay >= 21 && timeOfDay < 24){
+        }else if(timeOfDay >= 22 || timeOfDay < 3){
             greetingTextView.setText("Good Night!");
             greetingTextView.setPadding(235,550,0,10);
         }
