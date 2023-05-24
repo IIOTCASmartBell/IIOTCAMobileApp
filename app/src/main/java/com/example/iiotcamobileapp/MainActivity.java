@@ -40,14 +40,16 @@ public class MainActivity extends AppCompatActivity {
         TextView bottomTextView = findViewById(R.id.bottom_text);
         bottomTextView.setPadding(275,800,0,0);
 
+        NotificationActivity.createNotificationChannel(this);
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
-                startActivity(intent);
-                finish();
+//                Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
+//                startActivity(intent);
+//                finish();
+                NotificationActivity.generateNotifications(MainActivity.this);
             }
         }, 3000);
 
