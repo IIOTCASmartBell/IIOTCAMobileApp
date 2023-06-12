@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class ConfirmationActivity extends AppCompatActivity {
 
     private static final String TAG = "FIREBASE_MESSAGE";
@@ -22,10 +25,6 @@ public class ConfirmationActivity extends AppCompatActivity {
 
         String message = getIntent().getStringExtra("msg");
 
-//        if (message != null){
-//            Log.e(TAG, "Good! " + message);
-//        }
-
         TextView questionTextView = findViewById(R.id.question_text);
         questionTextView.setPadding(130,350,0,10);
         questionTextView.setText(message);
@@ -33,11 +32,17 @@ public class ConfirmationActivity extends AppCompatActivity {
         Button accBtn = (Button)findViewById(R.id.button_acc);
         Button denyBtn = (Button)findViewById(R.id.button_deny);
         accBtn.setOnClickListener(view -> {
+            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference actionsRef = rootRef.child("actions");
+            actionsRef.child("access").setValue("true");
             Intent intent = new Intent(ConfirmationActivity.this, MainActivity.class);
             startActivity(intent);
         });
 
         denyBtn.setOnClickListener(view -> {
+            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference actionsRef = rootRef.child("actions");
+            actionsRef.child("access").setValue("false");
             Intent intent = new Intent(ConfirmationActivity.this, MainActivity.class);
             startActivity(intent);
         });

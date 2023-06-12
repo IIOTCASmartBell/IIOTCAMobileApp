@@ -1,5 +1,6 @@
 package com.example.iiotcamobileapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -11,6 +12,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Calendar;
@@ -52,14 +58,25 @@ public class MainActivity extends AppCompatActivity {
         if (extras != null) {
             String body = "";
             String label = "";
+
+            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference actionsRef = rootRef.child("actions");
+
             for (String key : extras.keySet()) {
                 body = (String) extras.get("message");
                 label = (String) extras.get("label");
-                if(label.equals("default")){
-                    Intent intent = new Intent(MainActivity.this, ConfirmationActivity.class);
-                    intent.putExtra("msg", body);
-                    intent.setAction(Long.toString(System.currentTimeMillis())); // extras are not added if there is no action
-                    startActivity(intent);
+
+                switch(label){
+                    case "default": Intent intent = new Intent(MainActivity.this, ConfirmationActivity.class);
+                                    intent.putExtra("msg", body);
+                                    intent.setAction(Long.toString(System.currentTimeMillis())); // extras are not added if there is no action
+                                    startActivity(intent);
+                                    break;
+                    case "greenlist": actionsRef.child("access").setValue("true");
+                                      break;
+                    case "blacklist": actionsRef.child("access").setValue("false");
+                                      break;
+                    default: System.out.println("what");
                 }
             }
         }
@@ -74,18 +91,6 @@ public class MainActivity extends AppCompatActivity {
 //                    Log.d(TAG, "~~~NEW TOKEN:" + task.getResult());
 //                });
 
-//        NotificationActivity.createNotificationChannel(this);
-//
-//        Timer timer = new Timer();
-//        timer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-////                Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
-////                startActivity(intent);
-////                finish();
-//                NotificationActivity.generateNotifications(MainActivity.this);
-//            }
-//        }, 3000);
 
     }
 
