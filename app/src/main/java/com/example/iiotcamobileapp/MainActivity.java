@@ -51,15 +51,17 @@ public class MainActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String body = "";
+            String label = "";
             for (String key : extras.keySet()) {
-                if(key.equals("message")){
-                    body = (String) extras.get(key);
+                body = (String) extras.get("message");
+                label = (String) extras.get("label");
+                if(label.equals("default")){
+                    Intent intent = new Intent(MainActivity.this, ConfirmationActivity.class);
+                    intent.putExtra("msg", body);
+                    intent.setAction(Long.toString(System.currentTimeMillis())); // extras are not added if there is no action
+                    startActivity(intent);
                 }
             }
-            Intent intent = new Intent(MainActivity.this, ConfirmationActivity.class);
-            intent.putExtra("msg", body);
-            intent.setAction(Long.toString(System.currentTimeMillis())); // extras are not added if there is no action
-            startActivity(intent);
         }
 
         // generate device token
