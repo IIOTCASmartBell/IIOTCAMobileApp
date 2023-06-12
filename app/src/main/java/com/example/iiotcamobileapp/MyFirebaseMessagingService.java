@@ -45,7 +45,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             String message = remoteMessage.getData().get("body");
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
 
-            sendLocal(title,message,id);
+            sendLocal(title, message, id);
 
         }
 
@@ -59,8 +59,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void sendLocal(String title, String message, String id){
-        Intent intent = new Intent(this, NotificationActivity.class);
-        intent.putExtra("message",message);
+        Intent intent = new Intent(MyFirebaseMessagingService.this, MainActivity.class);
+        intent.putExtra("message", message);
         intent.setAction(Long.toString(System.currentTimeMillis())); // extras are not added if there is no action
 
         @SuppressLint("UnspecifiedImmutableFlag")
@@ -68,7 +68,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 this,
                 0,
                 intent,
-                PendingIntent.FLAG_IMMUTABLE
+                PendingIntent.FLAG_UPDATE_CURRENT
         );
 
         Uri sound= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
@@ -77,7 +77,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 "NOTIFICATION_CHANNEL",
                 NotificationManager.IMPORTANCE_HIGH
         );
-        notificationChannel.setVibrationPattern(new long[]{0,500});
+        notificationChannel.setVibrationPattern(new long[]{100,5000});
         notificationChannel.setSound(sound,null);
 
         NotificationManager notificationManager = getSystemService(NotificationManager.class);
@@ -87,8 +87,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentTitle(title)
                 .setContentText(message)
                 .setSound(sound)
-                .setSmallIcon(R.drawable.ic_launcher_background);
+                .setSmallIcon(R.drawable.ic_doorbell_foreground);
         notificationManager.notify(1234, builder.build());
+
     }
 
 }

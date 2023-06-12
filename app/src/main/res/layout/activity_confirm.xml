@@ -10,10 +10,10 @@
         android:layout_width="524dp"
         android:layout_height="221dp"
         android:text="Bla Bla"
-        android:textSize="50sp"
+        android:textSize="25sp"
         android:typeface="serif"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteX="120dp"
         tools:layout_editor_absoluteY="154dp" />
 
     <LinearLayout

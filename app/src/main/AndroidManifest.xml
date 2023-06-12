@@ -24,19 +24,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".NotificationActivity"
-            android:label="@string/app_name"
-            android:parentActivityName=".MainActivity"
-            />
-        <activity
             android:name=".ConfirmationActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".NotificationActivity"
-            />
+            android:parentActivityName=".MainActivity" />
 
         <service
             android:name=".MyFirebaseMessagingService"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>

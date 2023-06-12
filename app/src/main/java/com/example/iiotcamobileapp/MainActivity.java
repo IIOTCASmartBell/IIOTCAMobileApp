@@ -48,15 +48,29 @@ public class MainActivity extends AppCompatActivity {
         bottomTextView.setPadding(275,800,0,0);
 
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String body = "";
+            for (String key : extras.keySet()) {
+                if(key.equals("message")){
+                    body = (String) extras.get(key);
+                }
+            }
+            Intent intent = new Intent(MainActivity.this, ConfirmationActivity.class);
+            intent.putExtra("msg", body);
+            intent.setAction(Long.toString(System.currentTimeMillis())); // extras are not added if there is no action
+            startActivity(intent);
+        }
+
         // generate device token
-        FirebaseMessaging.getInstance().getToken()
-                .addOnCompleteListener(task -> {
-                    if (!task.isSuccessful()) {
-                        Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-                        return;
-                    }
-                    Log.d(TAG, "~~~NEW TOKEN:" + task.getResult());
-                });
+//        FirebaseMessaging.getInstance().getToken()
+//                .addOnCompleteListener(task -> {
+//                    if (!task.isSuccessful()) {
+//                        Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+//                        return;
+//                    }
+//                    Log.d(TAG, "~~~NEW TOKEN:" + task.getResult());
+//                });
 
 //        NotificationActivity.createNotificationChannel(this);
 //

@@ -11,6 +11,8 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,19 +24,48 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class NotificationActivity extends AppCompatActivity {
 
-    static public boolean uiInForeground = false;
+    static public boolean uiInForeground = true;
+    private static final String TAG = "DEBUG_CONFIRMATION";
+    private static final int DELAY_TIME = 30; // Delay time in milliseconds
+    private Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        if (NotificationActivity.uiInForeground){
-            Toast toast = Toast.makeText(getBaseContext(), "Firebase Generated Successfully", Toast.LENGTH_SHORT);
-            toast.show();
-        }
+//        if (NotificationActivity.uiInForeground) {
+//            Intent intent = new Intent(NotificationActivity.this, ConfirmationActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+        Log.d(TAG, "It gets here!");
 
+        handler = new Handler();
+        if (NotificationActivity.uiInForeground) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startConfirmationActivity();
+                }
+            }, DELAY_TIME);
+        }
+    }
+
+    private void startConfirmationActivity() {
+        Intent intent = new Intent(NotificationActivity.this, ConfirmationActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 
 //    protected static void createNotificationChannel(Context context) {
