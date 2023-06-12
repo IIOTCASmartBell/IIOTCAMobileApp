@@ -1,18 +1,25 @@
 package com.example.iiotcamobileapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
+
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "FIREBASE_MESSAGING";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,18 +47,29 @@ public class MainActivity extends AppCompatActivity {
         TextView bottomTextView = findViewById(R.id.bottom_text);
         bottomTextView.setPadding(275,800,0,0);
 
-        NotificationActivity.createNotificationChannel(this);
 
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-//                Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
-//                startActivity(intent);
-//                finish();
-                NotificationActivity.generateNotifications(MainActivity.this);
-            }
-        }, 3000);
+        // generate device token
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                        return;
+                    }
+                    Log.d(TAG, "~~~NEW TOKEN:" + task.getResult());
+                });
+
+//        NotificationActivity.createNotificationChannel(this);
+//
+//        Timer timer = new Timer();
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+////                Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
+////                startActivity(intent);
+////                finish();
+//                NotificationActivity.generateNotifications(MainActivity.this);
+//            }
+//        }, 3000);
 
     }
 

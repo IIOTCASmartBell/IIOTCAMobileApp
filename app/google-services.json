@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "392001043169",
+    "firebase_url": "https://smartdoorbellfinal-default-rtdb.firebaseio.com",
+    "project_id": "smartdoorbellfinal",
+    "storage_bucket": "smartdoorbellfinal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392001043169:android:d706c3c17381a26a2555a0",
+        "android_client_info": {
+          "package_name": "com.example.iiotcamobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "392001043169-fej0eo4ul5f0rmeo0j06249ufsirftqo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhTAhLlYZjYIHjM_joMu1frxOjKL9oKt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "392001043169-fej0eo4ul5f0rmeo0j06249ufsirftqo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
