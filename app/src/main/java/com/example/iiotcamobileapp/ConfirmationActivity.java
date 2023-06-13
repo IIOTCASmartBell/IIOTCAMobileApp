@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ConfirmationActivity extends AppCompatActivity {
 
-    private static final String TAG = "FIREBASE_MESSAGE";
+    private static final String TAG = "NOTIF_RECEIVED";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -34,7 +34,8 @@ public class ConfirmationActivity extends AppCompatActivity {
         accBtn.setOnClickListener(view -> {
             DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
             DatabaseReference actionsRef = rootRef.child("actions");
-            actionsRef.child("access").setValue("true");
+            actionsRef.child("access").setValue(Boolean.valueOf("true"));
+            actionsRef.child("print").setValue(Boolean.valueOf("true"));
             Intent intent = new Intent(ConfirmationActivity.this, MainActivity.class);
             startActivity(intent);
         });
@@ -42,7 +43,8 @@ public class ConfirmationActivity extends AppCompatActivity {
         denyBtn.setOnClickListener(view -> {
             DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
             DatabaseReference actionsRef = rootRef.child("actions");
-            actionsRef.child("access").setValue("false");
+            actionsRef.child("access").setValue(Boolean.valueOf("false"));
+            actionsRef.child("print").setValue(Boolean.valueOf("true"));
             Intent intent = new Intent(ConfirmationActivity.this, MainActivity.class);
             startActivity(intent);
         });

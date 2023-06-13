@@ -67,14 +67,16 @@ public class MainActivity extends AppCompatActivity {
                 label = (String) extras.get("label");
 
                 switch(label){
-                    case "default": Intent intent = new Intent(MainActivity.this, ConfirmationActivity.class);
-                                    intent.putExtra("msg", body);
-                                    intent.setAction(Long.toString(System.currentTimeMillis())); // extras are not added if there is no action
-                                    startActivity(intent);
-                                    break;
-                    case "greenlist": actionsRef.child("access").setValue("true");
+                    case "default":   Intent intent = new Intent(MainActivity.this, ConfirmationActivity.class);
+                                      intent.putExtra("msg", body);
+                                      intent.setAction(Long.toString(System.currentTimeMillis())); // extras are not added if there is no action
+                                      startActivity(intent);
                                       break;
-                    case "blacklist": actionsRef.child("access").setValue("false");
+                    case "greenlist": actionsRef.child("access").setValue(Boolean.valueOf("true"));
+                                      actionsRef.child("print").setValue(Boolean.valueOf("true"));
+                                      break;
+                    case "blacklist": actionsRef.child("access").setValue(Boolean.valueOf("false"));
+                                      actionsRef.child("print").setValue(Boolean.valueOf("true"));
                                       break;
                     default: System.out.println("what");
                 }
